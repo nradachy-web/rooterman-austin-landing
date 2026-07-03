@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nradachy-web.github.io/rooterman-austin-landing/sitemap.xml
