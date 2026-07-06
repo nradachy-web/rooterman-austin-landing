@@ -7,9 +7,9 @@
     --shadow:0 22px 60px -28px rgba(0,43,92,.45);
     --shadow-sm:0 10px 28px -16px rgba(0,43,92,.4);
     --r:14px; --maxw:1180px;
-    --display:"Archivo",system-ui,sans-serif;
+    --display:"Barlow Condensed",system-ui,sans-serif;
     --body:"Hanken Grotesk",system-ui,sans-serif;
-    --mono:"Spline Sans Mono",ui-monospace,monospace;
+    --mono:"Hanken Grotesk",system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -17,12 +17,13 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.02em;color:var(--navy)}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:.98;letter-spacing:0;color:var(--navy)}
+  .hero h1,.phero h1,.sec-head h2,.emerg h2,.final h2,.band h2,.austin h2{font-style:italic}
   .eyebrow{font-family:var(--mono);font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
   .eyebrow.on-dark{color:#7FB6E8}
 
   /* buttons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.01em;padding:1rem 1.45rem;border-radius:11px;cursor:pointer;border:none;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:.02em;padding:1rem 1.45rem;border-radius:11px;cursor:pointer;border:none;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap}
   .btn svg{width:19px;height:19px}
   .btn-call{background:var(--red);color:#fff;box-shadow:0 12px 26px -12px rgba(228,0,43,.7)}
   .btn-call:hover{transform:translateY(-2px);background:var(--red-dk)}
@@ -58,7 +59,7 @@
   .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--navy) 30%,rgba(0,43,92,.82) 50%,rgba(0,43,92,.15) 78%,transparent)}
   .hero .wrap{position:relative;z-index:1;padding-top:70px;padding-bottom:84px}
   .hero-inner{max-width:610px}
-  .hero h1{color:#fff;font-size:clamp(2.4rem,5vw,3.85rem);font-weight:900}
+  .hero h1{color:#fff;font-size:clamp(2.7rem,5.8vw,4.6rem);font-weight:800}
   .hero h1 .accent{color:#7FB6E8}
   .hero .sub{font-size:1.15rem;color:#d4e3f4;margin-top:1.1rem;max-width:38ch}
   .offer-ribbon{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem;margin-top:1.5rem;background:linear-gradient(90deg,var(--red),#ff3355);color:#fff;padding:.7rem 1.1rem;border-radius:12px;box-shadow:0 14px 30px -16px rgba(228,0,43,.8)}
@@ -86,7 +87,7 @@
   /* sections */
   section{padding:84px 0}
   .sec-head{max-width:62ch}
-  .sec-head h2{font-size:clamp(1.85rem,3.6vw,2.7rem);margin:.6rem 0 .55rem}
+  .sec-head h2{font-size:clamp(2.1rem,4vw,3.1rem);margin:.6rem 0 .55rem}
   .sec-head p{color:var(--muted);font-size:1.06rem}
   .center{text-align:center;margin-left:auto;margin-right:auto}
 
@@ -112,11 +113,11 @@
   /* full service grid */
   .services{background:var(--bg-soft)}
   .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
-  .svc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.25rem 1.2rem;transition:transform .15s,box-shadow .2s,border-color .2s}
-  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cfe0f0}
-  .svc .ic{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;margin-bottom:.8rem;background:rgba(0,94,184,.09)}
+  .svc{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:12px;padding:1.35rem 1.25rem;transition:transform .15s,box-shadow .2s,border-color .2s}
+  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-top-color:var(--red)}
+  .svc .ic{display:none}
   .svc .ic svg{width:23px;height:23px;color:var(--blue)}
-  .svc h3{font-size:1.04rem;margin-bottom:.28rem}
+  .svc h3{font-size:1.45rem;font-style:italic;margin-bottom:.3rem}
   .svc p{font-size:.86rem;color:var(--muted);line-height:1.42;margin-bottom:.7rem}
   .svc .links{display:flex;gap:.8rem;font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
   .svc .links a:first-child{color:var(--blue)}
@@ -242,7 +243,7 @@
   .phero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--navy) 34%,rgba(0,43,92,.86) 54%,rgba(0,43,92,.22) 82%,transparent)}
   .phero .wrap{position:relative;z-index:1;padding-top:54px;padding-bottom:64px}
   .phero-inner{max-width:640px}
-  .phero h1{color:#fff;font-size:clamp(2rem,4.4vw,3.2rem);font-weight:900}
+  .phero h1{color:#fff;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800}
   .phero .sub{font-size:1.1rem;color:#d4e3f4;margin-top:1rem;max-width:46ch}
   .crumb{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7FB6E8;display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
   .crumb a{color:#a9c4e0}
@@ -357,3 +358,25 @@
     .mobile-menu .mobile-foot .phone{font-family:var(--mono);font-weight:700;font-size:1.25rem;color:#fff}
     .mobile-menu .close-x{position:absolute;top:16px;right:22px;width:44px;height:44px;border-radius:11px;border:1.5px solid rgba(255,255,255,.28);background:transparent;color:#fff;font-size:1.15rem;cursor:pointer;line-height:1}
   }
+
+  /* ============ v3: hero redesign (van card + mascot + stripes) ============ */
+  .hero-v3{background:linear-gradient(180deg,var(--navy),var(--navy-deep))}
+  .hero-v3 .stripe{position:absolute;inset:0;z-index:0;pointer-events:none;background:
+    linear-gradient(115deg,transparent 57%,rgba(0,94,184,.22) 57.2%,rgba(0,94,184,.22) 76%,transparent 76.2%),
+    linear-gradient(115deg,transparent 62%,rgba(228,0,43,.24) 62.2%,rgba(228,0,43,.24) 65.4%,transparent 65.6%)}
+  .hero-v3 .wrap{padding-top:64px;padding-bottom:76px}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:3.2rem;align-items:center}
+  .hero-visual{position:relative;z-index:1}
+  .van-card{border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.7);transform:rotate(1.8deg);border:5px solid rgba(255,255,255,.14);background:var(--navy-deep)}
+  .van-card img{width:100%;display:block}
+  .hero-mascot{position:absolute;bottom:-34px;left:-46px;width:212px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5));transform:rotate(-2deg)}
+  .rating-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
+  .g-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border-radius:999px;padding:.5rem 1.05rem;color:var(--navy);font-weight:700;font-size:.92rem;box-shadow:var(--shadow-sm)}
+  .g-badge .stars{color:#F5A623;letter-spacing:1px;font-size:.95rem}
+  .g-badge .num{font-family:var(--display);font-weight:800;font-size:1.15rem}
+  .rating-row .sub{color:#a9c4e0;font-size:.84rem;font-weight:600}
+  @media(max-width:1040px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}.hero-visual{max-width:520px}.hero-mascot{width:170px;left:-16px;bottom:-26px}}
+
+  /* aggregate review badge in reviews section */
+  .agg{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:22px}
+  .agg .g-badge{box-shadow:none;border:1.5px solid var(--line)}

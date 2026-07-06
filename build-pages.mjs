@@ -11,8 +11,9 @@ const R = "../"; // generated pages live one level deep
 const BASE = "https://nradachy-web.github.io/rooterman-austin-landing/";
 const PHONE_DISPLAY = "(512) 645-1441";
 const PHONE_TEL = "tel:+15126451441";
-const BOOK_URL = "https://www.rootermanofaustin.com/contact-us/";
-const GOOGLE_REVIEWS = "https://www.google.com/search?q=Rooter-Man+Plumbing+of+Austin+TX+reviews";
+const BOOK_URL = "https://www.rootermanofaustin.com/?scheduling=1";
+const GOOGLE_REVIEWS = "https://www.google.com/search?q=Rooter-Man+Plumbing+Austin+TX+15503+Patrica+St+reviews";
+const YELP_REVIEWS = "https://www.yelp.com/biz/rooterman-plumbing-austin";
 
 const PHONE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>`;
 const CHECK_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
@@ -43,7 +44,7 @@ function head(title, desc, slug) {
 <link rel="canonical" href="${BASE}${slug}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="${R}assets/client/rm-mascot.png" />
 <link rel="stylesheet" href="${R}assets/site.css" />
 </head>
@@ -95,7 +96,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="#book">Book Online</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}">Book Online</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -130,7 +131,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="#book">Book Online</a>
+    <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
   </div>
 </div>`;
 
@@ -202,9 +203,13 @@ function reviewsBlock(keys, title) {
     <div class="rev-grid">
       ${cards}
     </div>
+    <div class="agg reveal">
+      <span class="g-badge"><span class="num">4.9</span><span class="stars">★★★★★</span><span>1,200+ Google reviews</span></span>
+    </div>
     <div class="rev-src reveal">
       <span class="lbl">Read our reviews on</span>
       <a class="src-chip" href="${GOOGLE_REVIEWS}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v2.9h5.35c-.5 2.5-2.6 4.3-5.35 4.3a5.8 5.8 0 1 1 0-11.6c1.5 0 2.8.55 3.8 1.45l2.15-2.15A8.7 8.7 0 1 0 12 20.7c5 0 8.7-3.5 8.7-8.7 0-.3 0-.6-.05-.9Z"/></svg> Google</a>
+      <a class="src-chip" href="${YELP_REVIEWS}" target="_blank" rel="noopener">Yelp</a>
       <a class="src-chip" href="https://www.rootermanofaustin.com/reviews/" target="_blank" rel="noopener">All reviews</a>
     </div>
   </div>
@@ -279,7 +284,7 @@ const FOOTER = `
         <h4>Contact</h4>
         <div class="foot-list">
           <a class="foot-phone" href="${PHONE_TEL}">${PHONE_DISPLAY}</a>
-          <span>4413 Spicewood Springs Rd #101</span>
+          <span>15503 Patrica St</span>
           <span>Austin, TX 78759</span>
           <span>Calls answered 24/7</span>
           <span>Hablamos Español</span>
@@ -297,7 +302,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="#book">Book</a>
+  <a class="btn btn-book" href="${BOOK_URL}">Book</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -308,8 +313,7 @@ function schema(pageName, slug, faqs, extraAreas) {
     image: "https://www.rootermanofaustin.com/images/logos/Logo.png",
     telephone: "+1-512-645-1441",
     url: BASE + slug,
-    address: { "@type": "PostalAddress", streetAddress: "4413 Spicewood Springs Rd #101", addressLocality: "Austin", addressRegion: "TX", postalCode: "78759", addressCountry: "US" },
-    geo: { "@type": "GeoCoordinates", latitude: 30.3734616, longitude: -97.759108 },
+    address: { "@type": "PostalAddress", streetAddress: "15503 Patrica St", addressLocality: "Austin", addressRegion: "TX", postalCode: "78728", addressCountry: "US" },
     areaServed: extraAreas || ["Austin", "Cedar Park", "Round Rock", "Georgetown", "Pflugerville", "Leander", "Lakeway", "Hutto", "Brushy Creek", "Wells Branch"],
     foundingDate: "2012",
     knowsLanguage: ["en", "es"],
@@ -590,7 +594,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="#book">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -666,7 +670,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="#book">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
