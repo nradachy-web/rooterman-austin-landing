@@ -8,10 +8,12 @@ import { writeFileSync, mkdirSync } from "fs";
 
 const R = "../"; // generated pages live one level deep
 
-const BASE = "https://nradachy-web.github.io/rooterman-austin-landing/";
+const BASE = "https://www.rootermanofaustin.com/";
 const PHONE_DISPLAY = "(512) 645-1441";
 const PHONE_TEL = "tel:+15126451441";
-const BOOK_URL = "https://www.rootermanofaustin.com/?scheduling=1";
+// Interim: the old site's booking overlay (Scorpion widget) dies at DNS cutover.
+// Swap to Sneha's ServiceTitan booking link once she provides it.
+const BOOK_URL = PHONE_TEL;
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=Rooter-Man+Plumbing+Austin+TX+15503+Patrica+St+reviews";
 const YELP_REVIEWS = "https://www.yelp.com/biz/rooterman-plumbing-austin";
 
@@ -39,6 +41,14 @@ function head(title, desc, slug) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18245522940"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18245522940');
+</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}" />
 <link rel="canonical" href="${BASE}${slug}" />
@@ -96,7 +106,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="${BOOK_URL}">Book Online</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}">Call to Book</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -131,7 +141,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
+    <a class="btn btn-book" href="${BOOK_URL}">Call to Book</a>
   </div>
 </div>`;
 
@@ -242,7 +252,7 @@ function finalCta(h, p) {
     <p class="reveal">${p}</p>
     <div class="hero-cta reveal">
       <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
     </div>
     <div class="fine reveal">Calls answered 24/7 · Hablamos Español</div>
   </div>
@@ -302,7 +312,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="${BOOK_URL}">Book</a>
+  <a class="btn btn-book" href="${BOOK_URL}">Call to Book</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -594,7 +604,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -670,7 +680,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
