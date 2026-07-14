@@ -705,7 +705,7 @@ ${TRUSTBAR}
       <h2>Every service, right here in ${c.city}.</h2>
       <p>${c.angle}</p>
     </div>
-    <div class="svc-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="svc-grid">
       ${serviceLinksGrid()}
     </div>
   </div>
