@@ -8,7 +8,7 @@ import { writeFileSync, mkdirSync } from "fs";
 
 const R = "../"; // generated pages live one level deep
 
-const BASE = "https://www.rootermanofaustin.com/";
+const BASE = "https://rootermanofaustin.com/";
 const PHONE_DISPLAY = "(512) 645-1441";
 const PHONE_TEL = "tel:+15126451441";
 // Interim: the old site's booking overlay (Scorpion widget) dies at DNS cutover.
@@ -220,7 +220,7 @@ function reviewsBlock(keys, title) {
       <span class="lbl">Read our reviews on</span>
       <a class="src-chip" href="${GOOGLE_REVIEWS}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v2.9h5.35c-.5 2.5-2.6 4.3-5.35 4.3a5.8 5.8 0 1 1 0-11.6c1.5 0 2.8.55 3.8 1.45l2.15-2.15A8.7 8.7 0 1 0 12 20.7c5 0 8.7-3.5 8.7-8.7 0-.3 0-.6-.05-.9Z"/></svg> Google</a>
       <a class="src-chip" href="${YELP_REVIEWS}" target="_blank" rel="noopener">Yelp</a>
-      <a class="src-chip" href="https://www.rootermanofaustin.com/reviews/" target="_blank" rel="noopener">All reviews</a>
+      <a class="src-chip" href="https://rootermanofaustin.com/reviews/" target="_blank" rel="noopener">All reviews</a>
     </div>
   </div>
 </section>`;
@@ -320,7 +320,7 @@ function schema(pageName, slug, faqs, extraAreas) {
     "@context": "https://schema.org",
     "@type": "Plumber",
     name: "Rooter-Man of Austin",
-    image: "https://www.rootermanofaustin.com/images/logos/Logo.png",
+    image: "https://rootermanofaustin.com/images/logos/Logo.png",
     telephone: "+1-512-645-1441",
     url: BASE + slug,
     address: { "@type": "PostalAddress", streetAddress: "15503 Patrica St", addressLocality: "Austin", addressRegion: "TX", postalCode: "78728", addressCountry: "US" },
