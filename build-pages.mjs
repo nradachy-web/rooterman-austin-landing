@@ -11,9 +11,11 @@ const R = "../"; // generated pages live one level deep
 const BASE = "https://rootermanofaustin.com/";
 const PHONE_DISPLAY = "(512) 645-1441";
 const PHONE_TEL = "tel:+15126451441";
-// Interim: the old site's booking overlay (Scorpion widget) dies at DNS cutover.
-// Swap to Sneha's ServiceTitan booking link once she provides it.
-const BOOK_URL = PHONE_TEL;
+const SMS_URL = "sms:+15126451441";
+// Secondary CTA. The old Scorpion booking overlay is gone with the Scorpion site.
+// Interim = text-to-schedule. Swap to the client's ServiceTitan Scheduling Pro
+// scheduler (data-api-key + data-schedulerid) or book.servicetitan.com link when provided.
+const BOOK_URL = SMS_URL;
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=Rooter-Man+Plumbing+Austin+TX+15503+Patrica+St+reviews";
 const YELP_REVIEWS = "https://www.yelp.com/biz/rooterman-plumbing-austin";
 
@@ -106,7 +108,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="${BOOK_URL}">Call to Book</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}">Text to Schedule</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -141,7 +143,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="${BOOK_URL}">Call to Book</a>
+    <a class="btn btn-book" href="${BOOK_URL}">Text to Schedule</a>
   </div>
 </div>`;
 
@@ -164,7 +166,7 @@ const STEPS = `
       <h2>Simple, honest, same-day when we can.</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="n">1</div><h3>Call or Book Online</h3><p>Our line is answered around the clock at ${PHONE_DISPLAY}. Tell us what is going on and we give you the next available options, often same-day.</p></div>
+      <div class="step reveal"><div class="n">1</div><h3>Call or Text Us</h3><p>Our line is answered around the clock at ${PHONE_DISPLAY}. Tell us what is going on and we give you the next available options, often same-day.</p></div>
       <div class="step reveal"><div class="n">2</div><h3>Upfront Diagnosis &amp; Pricing</h3><p>A licensed plumber inspects the real problem and explains it plainly, English or Spanish. You see the price before any work begins. No surprises, no upsell pressure.</p></div>
       <div class="step reveal"><div class="n">3</div><h3>The Job Done Right</h3><p>We do the work cleanly and to code, test it, and leave your space the way we found it. Every job is backed by our warranty.</p></div>
     </div>
@@ -251,8 +253,8 @@ function finalCta(h, p) {
     <h2 class="reveal" style="margin-top:.5rem">${h}</h2>
     <p class="reveal">${p}</p>
     <div class="hero-cta reveal">
-      <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
+      <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
     </div>
     <div class="fine reveal">Calls answered 24/7 · Hablamos Español</div>
   </div>
@@ -312,7 +314,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="${BOOK_URL}">Call to Book</a>
+  <a class="btn btn-book" href="${BOOK_URL}">Text to Schedule</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -603,8 +605,8 @@ ${HEADER}
         <span class="fine">Mention online. Valid through Dec 31, 2026. Cannot be combined.</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
+        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -679,8 +681,8 @@ ${HEADER}
         <span class="fine">Mention online. Valid through Dec 31, 2026. Cannot be combined.</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call or Text ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Call to Book</a>
+        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
