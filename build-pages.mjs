@@ -67,7 +67,7 @@ const UTIL = `
 <div class="util">
   <div class="wrap">
     <div class="left"><span>Licensed Austin Plumbers Since 2012</span><span class="sep">·</span><span>License M40109</span><span class="sep">·</span><span>Same-Day Scheduling</span><span class="sep">·</span><span>Hablamos Español</span></div>
-    <div class="right">Call or Text: <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a></div>
+    <div class="right">Call: <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a></div>
   </div>
 </div>`;
 
@@ -108,7 +108,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="${BOOK_URL}">Book Online</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -143,7 +143,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
+    <a class="btn btn-book" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
   </div>
 </div>`;
 
@@ -166,7 +166,7 @@ const STEPS = `
       <h2>Simple, honest, same-day when we can.</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="n">1</div><h3>Call or Text Us</h3><p>Our line is answered around the clock at ${PHONE_DISPLAY}. Tell us what is going on and we give you the next available options, often same-day.</p></div>
+      <div class="step reveal"><div class="n">1</div><h3>Call Us</h3><p>Our line is answered around the clock at ${PHONE_DISPLAY}. Tell us what is going on and we give you the next available options, often same-day.</p></div>
       <div class="step reveal"><div class="n">2</div><h3>Upfront Diagnosis &amp; Pricing</h3><p>A licensed plumber inspects the real problem and explains it plainly, English or Spanish. You see the price before any work begins. No surprises, no upsell pressure.</p></div>
       <div class="step reveal"><div class="n">3</div><h3>The Job Done Right</h3><p>We do the work cleanly and to code, test it, and leave your space the way we found it. Every job is backed by our warranty.</p></div>
     </div>
@@ -254,7 +254,7 @@ function finalCta(h, p) {
     <p class="reveal">${p}</p>
     <div class="hero-cta reveal">
       <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+      <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
     </div>
     <div class="fine reveal">Calls answered 24/7 · Hablamos Español</div>
   </div>
@@ -314,7 +314,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
+  <a class="btn btn-book" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -339,7 +339,14 @@ function schema(pageName, slug, faqs, extraAreas) {
   return `<script type="application/ld+json">${JSON.stringify(plumber)}</script>\n<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`;
 }
 
-const TAIL = `<script src="${R}assets/site.js"></script>\n</body>\n</html>\n`;
+const TAIL = `<!-- ServiceTitan Web Scheduler -->
+<script>
+  (function(q,w,e,r,t,y,u){q[t]=q[t]||function(){(q[t].q=q[t].q||[]).push(arguments)};
+    q[t].l=1*new Date();y=w.createElement(e);u=w.getElementsByTagName(e)[0];y.async=true;
+    y.src=r;u.parentNode.insertBefore(y,u);q[t]('init','f1337b8d-084b-4d33-b180-7dc5cd74e597');
+  })(window,document,'script','https://static.servicetitan.com/webscheduler/shim.js','STWidgetManager');
+</script>
+<script src="${R}assets/site.js"></script>\n</body>\n</html>\n`;
 
 /* ============================= SERVICE PAGES ============================= */
 
@@ -606,7 +613,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -682,7 +689,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -777,7 +784,7 @@ ${HEADER}
   <div class="book-wrap">
     <span class="eyebrow">Book online</span>
     <h1>Request your Austin plumbing appointment.</h1>
-    <p>Tell us what is going on and when works for you. We will call to confirm your time, often same-day. Prefer to talk now? Call or text ${PHONE_DISPLAY}.</p>
+    <p>Tell us what is going on and when works for you. We will call to confirm your time, often same-day. Prefer to talk now? Call ${PHONE_DISPLAY}.</p>
     <div class="trust"><span>Licensed M40109</span><span>Family-owned since 2012</span><span>Calls answered 24/7</span><span>Hablamos Español</span></div>
   </div>
 </section>
@@ -785,34 +792,12 @@ ${HEADER}
 <section class="book-main">
   <div class="book-wrap book-grid">
     <div class="book-card">
-      <form id="bookform" class="book-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="WEB3FORMS_KEY_PENDING" />
-        <input type="hidden" name="subject" value="New booking request — Rooter-Man of Austin website" />
-        <input type="hidden" name="from_name" value="Rooter-Man of Austin website" />
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-        <div class="fg"><label for="bk-name">Full name</label><input id="bk-name" name="name" required autocomplete="name" /></div>
-        <div class="fg2">
-          <div class="fg"><label for="bk-phone">Phone</label><input id="bk-phone" name="phone" type="tel" required autocomplete="tel" /></div>
-          <div class="fg"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" autocomplete="email" /></div>
-        </div>
-        <div class="fg"><label for="bk-addr">Service address</label><input id="bk-addr" name="service_address" autocomplete="street-address" placeholder="Street, city, ZIP" /></div>
-        <div class="fg"><label for="bk-svc">What do you need?</label><select id="bk-svc" name="service_needed">${SERVICE_OPTS}</select></div>
-        <div class="fg2">
-          <div class="fg"><label for="bk-date">Preferred date</label><input id="bk-date" name="preferred_date" type="date" /></div>
-          <div class="fg"><label for="bk-time">Preferred time</label><select id="bk-time" name="preferred_time">${TIME_OPTS}</select></div>
-        </div>
-        <div class="fg"><label for="bk-note">Tell us about the problem</label><textarea id="bk-note" name="details" rows="3" placeholder="A quick description helps us send the right plumber."></textarea></div>
-        <button class="btn btn-book btn-lg" type="submit">Request Appointment</button>
-        <p class="book-fine">We answer 24/7 and will call to confirm your time. For an active emergency, call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
-      </form>
-      <div id="bookok" class="book-ok" hidden>
-        <div class="chk"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-        <h2>Request received</h2>
-        <p>Thanks! We have your request and will call shortly to confirm your appointment time.</p>
-        <p>Need us sooner? Call or text <a href="${PHONE_TEL}" style="color:#c0261f;font-weight:700;text-decoration:none">${PHONE_DISPLAY}</a>.</p>
-      </div>
+      <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 8px;font-size:1.4rem">Pick a time that works for you.</h2>
+      <p style="color:#5a6b7d;margin:0 0 22px">Open our online scheduler, choose your service and an appointment window, and we confirm your visit, often same-day.</p>
+      <button type="button" class="btn btn-book btn-lg" onclick="STWidgetManager('ws-open');return false;" style="width:100%;justify-content:center">Schedule My Appointment</button>
+      <p class="book-fine">We answer 24/7. For an active emergency, call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
     </div>
-    <aside class="book-side">
+        <aside class="book-side">
       <h3>What happens next</h3>
       <ol>
         <li>We review your request and call to confirm the time that works best, often same-day.</li>
@@ -829,33 +814,6 @@ ${HEADER}
 </section>
 
 ${FOOTER}
-<script>
-(function(){
-  var f=document.getElementById('bookform'); if(!f) return;
-  var d=document.getElementById('bk-date'); if(d){try{d.min=new Date().toISOString().split('T')[0];}catch(e){}}
-  f.addEventListener('submit', async function(e){
-    e.preventDefault();
-    var key=(f.querySelector('[name=access_key]')||{}).value||'';
-    var fine=f.querySelector('.book-fine');
-    if(!key || key.indexOf('PENDING')>-1){
-      if(fine) fine.innerHTML='Online booking is being finalized. Please call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a> to schedule right now.';
-      return;
-    }
-    var btn=f.querySelector('button[type=submit]'); var label=btn.textContent; btn.disabled=true; btn.textContent='Sending...';
-    try{
-      var res=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
-      var data=await res.json();
-      if(data && data.success){
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
-        f.hidden=true; var ok=document.getElementById('bookok'); ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'});
-      } else { throw new Error((data&&data.message)||'error'); }
-    }catch(err){
-      btn.disabled=false; btn.textContent=label;
-      if(fine) fine.innerHTML='Something went wrong sending your request. Please call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a> and we will book you right away.';
-    }
-  });
-})();
-</script>
 ${TAIL}`;
   mkdirSync("book", { recursive: true });
   writeFileSync("book/index.html", html);
