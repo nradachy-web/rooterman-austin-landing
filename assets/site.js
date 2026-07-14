@@ -10,3 +10,29 @@ var tgl=document.querySelector('.nav-toggle'),mm=document.querySelector('.mobile
 if(tgl&&mm){var setOpen=function(o){mm.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';tgl.setAttribute('aria-expanded',o)};
 tgl.addEventListener('click',function(){setOpen(!mm.classList.contains('open'))});
 mm.addEventListener('click',function(e){if(e.target.closest('a')||e.target.closest('.close-x'))setOpen(false)});}
+/* Clean in-page navigation: scroll to sections without leaving a #hash in the URL */
+(function(){
+  var KEY='rm_scroll';
+  function go(id){var el=document.getElementById(id);if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return true}return false}
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;
+    if(!a)return;
+    var raw=a.getAttribute('href')||'';
+    if(raw.indexOf('#')<0)return;
+    var url;try{url=new URL(a.href,location.href)}catch(_){return}
+    if(url.origin!==location.origin||!url.hash)return;
+    var id=url.hash.slice(1);if(!id)return;
+    e.preventDefault();
+    if(url.pathname===location.pathname){
+      go(id);history.replaceState(null,'',location.pathname+location.search);
+    }else{
+      try{sessionStorage.setItem(KEY,id)}catch(_){}
+      location.href=url.pathname+url.search;
+    }
+  });
+  window.addEventListener('load',function(){
+    var id=null;try{id=sessionStorage.getItem(KEY)}catch(_){}
+    if(id){try{sessionStorage.removeItem(KEY)}catch(_){}setTimeout(function(){go(id)},80)}
+    if(location.hash){var h=location.hash.slice(1);setTimeout(function(){go(h);history.replaceState(null,'',location.pathname+location.search)},80)}
+  });
+})();
