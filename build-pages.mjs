@@ -175,9 +175,9 @@ const STEPS = `
 
 function coupons(focus) {
   const c1 = `<div class="coupon reveal">
-        <div class="big">10% OFF</div>
+        <div class="big">5% OFF</div>
         <h3>For New Customers</h3>
-        <p>New to Rooter-Man of Austin? Save 10% on your first service.</p>
+        <p>New to Rooter-Man of Austin? Save 5% on your first service.</p>
         <span class="fine">Cannot be combined with any other coupon. Restrictions may apply. Valid Jan 1 through Dec 31, 2026.</span>
         <a class="btn btn-call" href="${PHONE_TEL}">Call to Claim ${PHONE_DISPLAY}</a>
       </div>`;
@@ -361,7 +361,7 @@ const services = [
   {
     slug: "drain-cleaning/",
     title: "Drain Cleaning in Austin, TX | Rooter-Man of Austin | Licensed M40109",
-    desc: "Austin drain cleaning by licensed plumbers. Clogs cleared at the source, hydro jetting, camera inspection, honest pricing. New customers save 10%. Call (512) 645-1441.",
+    desc: "Austin drain cleaning by licensed plumbers. Clogs cleared at the source, hydro jetting, camera inspection, honest pricing. New customers save 5%. Call (512) 645-1441.",
     crumb: "Drain Cleaning",
     h1: `Drain Cleaning in Austin, <span class="accent">cleared at the source.</span>`,
     sub: "Slow drains, gurgling sinks, and backups cleared by licensed plumbers with the right method for the job, from a routine cleanout to full hydro jetting. Honest recommendations, no upsell pressure.",
@@ -389,7 +389,7 @@ const services = [
     ],
     couponFocus: "new",
     finalH: "Get that drain flowing today.",
-    finalP: `Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 10%.`,
+    finalP: `Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 5%.`,
   },
   {
     slug: "water-heaters/",
@@ -417,7 +417,7 @@ const services = [
       { q: "Should I repair or replace my water heater?", a: "Generally, repair makes sense when the unit is under about 10 years old and only a few components are involved. Replacement is often smarter when it is over 10 years old, has needed multiple repairs, or efficiency has dropped. We give you an honest recommendation, not a sales pitch." },
       { q: "How fast can you install a new water heater in Austin?", a: "Most standard replacements are completed same-day or next-day once you approve the price. One of our customers called on a Saturday and had a new water heater installed by Sunday afternoon." },
       { q: "Do you install tankless water heaters?", a: "Yes. We repair and install gas, electric, and tankless systems, and we will tell you honestly whether tankless makes sense for your home and usage." },
-      { q: "Is there really $100 off?", a: "Yes. Take $100 off a water heater install with Rooter-Man, valid through Dec 31, 2026. It cannot be combined with other coupons, and new customers can use their 10% discount instead if it saves more." },
+      { q: "Is there really $100 off?", a: "Yes. Take $100 off a water heater install with Rooter-Man, valid through Dec 31, 2026. It cannot be combined with other coupons, and new customers can use their 5% discount instead if it saves more." },
       COMMON_FAQS.hours,
     ],
     couponFocus: "wh",
@@ -455,7 +455,7 @@ const services = [
     ],
     couponFocus: "new",
     finalH: "Call now. A real person answers.",
-    finalP: `Our line is answered 24/7 and a licensed, warranty-backed Austin plumber is dispatched at the first available appointment, same-day whenever possible. New customers save 10%.`,
+    finalP: `Our line is answered 24/7 and a licensed, warranty-backed Austin plumber is dispatched at the first available appointment, same-day whenever possible. New customers save 5%.`,
   },
   {
     slug: "plumbing-repair/",
@@ -490,7 +490,7 @@ const services = [
     ],
     couponFocus: "new",
     finalH: "One call fixes it for good.",
-    finalP: `Licensed, local, and family-owned since 2012. Upfront pricing, no upsell pressure, and every repair backed by our warranty. New customers save 10%.`,
+    finalP: `Licensed, local, and family-owned since 2012. Upfront pricing, no upsell pressure, and every repair backed by our warranty. New customers save 5%.`,
   },
   {
     slug: "sewer-septic/",
@@ -523,7 +523,7 @@ const services = [
     ],
     couponFocus: "new",
     finalH: "Get eyes on the line today.",
-    finalP: `Camera-verified diagnosis, trenchless options, and warranty-backed work from a licensed, family-owned Austin crew. Financing available on larger projects. New customers save 10%.`,
+    finalP: `Camera-verified diagnosis, trenchless options, and warranty-backed work from a licensed, family-owned Austin crew. Financing available on larger projects. New customers save 5%.`,
   },
   {
     slug: "commercial-plumbing/",
@@ -607,7 +607,7 @@ ${HEADER}
       <h1>${s.h1}</h1>
       <p class="sub">${s.sub}</p>
       <div class="offers">
-        <span class="offer-chip"><span class="dot"></span>New customers save 10%</span>
+        <span class="offer-chip"><span class="dot"></span>New customers save 5%</span>
         <span class="offer-chip"><span class="dot blue"></span>$100 off water heater install</span>
         <span class="fine">Mention online. Valid through Dec 31, 2026. Cannot be combined.</span>
       </div>
@@ -664,7 +664,7 @@ ${TAIL}`;
 
 function buildCityPage(c) {
   const title = `Plumber in ${c.city}, TX | Rooter-Man of Austin | Licensed M40109`;
-  const desc = `Licensed plumbers serving ${c.city}, TX: drain cleaning, water heaters, leak detection, sewer and septic. Family-owned since 2012. New customers save 10%. Call (512) 645-1441.`;
+  const desc = `Licensed plumbers serving ${c.city}, TX: drain cleaning, water heaters, leak detection, sewer and septic. Family-owned since 2012. New customers save 5%. Call (512) 645-1441.`;
   const faqs = [
     { q: `Do you serve ${c.city}?`, a: `Yes. ${c.city} is part of our regular Greater Austin service area, alongside Austin, Cedar Park, Round Rock, Georgetown, Pflugerville, Leander, Lakeway, Hutto, Brushy Creek, and Wells Branch.` },
     { q: `Can I get same-day plumbing service in ${c.city}?`, a: `We strive for same-day scheduling whenever possible, and our phone line is answered 24/7 so you can call any time and get on the schedule at (512) 645-1441.` },
@@ -683,7 +683,7 @@ ${HEADER}
       <h1>Plumbers in ${c.city}, <span class="accent">on the way.</span></h1>
       <p class="sub">Fast, honest, licensed plumbers for ${c.city} homes and businesses: drains, water heaters, leaks, sewer and septic. Same-day scheduling whenever possible, upfront pricing, warranty-backed work.</p>
       <div class="offers">
-        <span class="offer-chip"><span class="dot"></span>New customers save 10%</span>
+        <span class="offer-chip"><span class="dot"></span>New customers save 5%</span>
         <span class="offer-chip"><span class="dot blue"></span>$100 off water heater install</span>
         <span class="fine">Mention online. Valid through Dec 31, 2026. Cannot be combined.</span>
       </div>
@@ -715,7 +715,7 @@ ${STEPS}
 ${reviewsBlock(["karen", "gabe", "james"], `What your neighbors say about Rooter-Man.`)}
 ${coupons("new")}
 ${faqBlock(faqs)}
-${finalCta(`Get a ${c.city} plumber on the way.`, `Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 10%.`)}
+${finalCta(`Get a ${c.city} plumber on the way.`, `Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 5%.`)}
 ${FOOTER}
 ${schema(c.city, c.slug, faqs, [c.city, "Austin"])}
 ${TAIL}`;
@@ -802,7 +802,7 @@ ${HEADER}
       <ol>
         <li>We review your request and call to confirm the time that works best, often same-day.</li>
         <li>A licensed plumber arrives and gives you upfront pricing before any work begins.</li>
-        <li>The job is done right, backed by our warranty. New customers save 10%.</li>
+        <li>The job is done right, backed by our warranty. New customers save 5%.</li>
       </ol>
       <div class="call-box">
         <span>Rather book by phone?</span>
