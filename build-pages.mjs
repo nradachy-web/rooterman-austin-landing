@@ -15,7 +15,7 @@ const SMS_URL = "sms:+15126451441";
 // Secondary CTA. The old Scorpion booking overlay is gone with the Scorpion site.
 // Interim = text-to-schedule. Swap to the client's ServiceTitan Scheduling Pro
 // scheduler (data-api-key + data-schedulerid) or book.servicetitan.com link when provided.
-const BOOK_URL = SMS_URL;
+const BOOK_URL = R + "book/";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=Rooter-Man+Plumbing+Austin+TX+15503+Patrica+St+reviews";
 const YELP_REVIEWS = "https://www.yelp.com/biz/rooterman-plumbing-austin";
 
@@ -108,7 +108,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="${BOOK_URL}">Text to Schedule</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}">Book Online</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -143,7 +143,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="${BOOK_URL}">Text to Schedule</a>
+    <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
   </div>
 </div>`;
 
@@ -254,7 +254,7 @@ function finalCta(h, p) {
     <p class="reveal">${p}</p>
     <div class="hero-cta reveal">
       <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
+      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
     </div>
     <div class="fine reveal">Calls answered 24/7 · Hablamos Español</div>
   </div>
@@ -314,7 +314,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="${BOOK_URL}">Text to Schedule</a>
+  <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -606,7 +606,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -682,7 +682,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Text to Schedule</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -718,6 +718,151 @@ ${TAIL}`;
   console.log("wrote", c.slug);
 }
 
+function buildBookingPage() {
+  const title = "Book Online | Rooter-Man of Austin | Request a Plumbing Appointment";
+  const desc = "Book your Austin plumbing appointment online. Tell us what you need and your preferred time, and we will call to confirm. Licensed M40109, family-owned since 2012, calls answered 24/7.";
+  const SERVICE_OPTS = [
+    "Drain cleaning",
+    "Water heater (repair or install)",
+    "Leak detection or repair",
+    "Sewer or septic",
+    "Toilet, faucet, or fixture",
+    "Emergency plumbing",
+    "Something else / not sure",
+  ].map((s) => `<option>${s}</option>`).join("");
+  const TIME_OPTS = [
+    "As soon as possible",
+    "Morning (8am to 12pm)",
+    "Afternoon (12pm to 4pm)",
+    "Evening (4pm to 8pm)",
+  ].map((s) => `<option>${s}</option>`).join("");
+
+  const html = `${head(title, desc, "book/")}
+<style>
+  .book-wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .book-hero{background:#0e2a47;color:#eaf1f8;padding:64px 0 40px;text-align:center}
+  .book-hero .eyebrow{color:#ff5a4d}
+  .book-hero h1{font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:.4rem 0 .6rem}
+  .book-hero p{max-width:60ch;margin:0 auto;color:#c2d2e2;font-size:1.05rem}
+  .book-hero .trust{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:18px;font-size:.85rem;color:#9fb6cf;font-weight:600}
+  .book-main{padding:44px 0 72px;background:#f4f7fb}
+  .book-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:34px;align-items:start}
+  @media(max-width:820px){.book-grid{grid-template-columns:1fr}}
+  .book-card{background:#fff;border:1px solid #e2e9f1;border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(15,42,71,.06)}
+  .book-form .fg{margin-bottom:15px}
+  .book-form .fg2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:520px){.book-form .fg2{grid-template-columns:1fr}}
+  .book-form label{display:block;font-weight:700;font-size:.82rem;color:#0e2a47;margin-bottom:5px}
+  .book-form input,.book-form select,.book-form textarea{width:100%;padding:11px 12px;border:1px solid #cdd8e4;border-radius:9px;font:inherit;font-size:.95rem;color:#0e2a47;background:#fff;box-sizing:border-box}
+  .book-form input:focus,.book-form select:focus,.book-form textarea:focus{outline:none;border-color:#1f6fd6;box-shadow:0 0 0 3px rgba(31,111,214,.15)}
+  .book-form button[type=submit]{width:100%;margin-top:6px;justify-content:center}
+  .book-fine{font-size:.82rem;color:#5a6b7d;margin-top:12px;text-align:center}
+  .book-fine a{color:#c0261f;font-weight:700;text-decoration:none}
+  .book-ok{background:#fff;border:1px solid #cfe6d3;border-radius:14px;padding:40px 28px;text-align:center}
+  .book-ok .chk{width:56px;height:56px;border-radius:50%;background:#e7f6ea;color:#1e9e4a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+  .book-ok h2{font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 8px}
+  .book-ok p{color:#5a6b7d;max-width:44ch;margin:0 auto 6px}
+  .book-side h3{font-family:Poppins,sans-serif;color:#0e2a47;font-size:1.15rem;margin:0 0 12px}
+  .book-side ol{margin:0 0 22px;padding-left:1.1rem;color:#3a4b5c;line-height:1.6}
+  .book-side ol li{margin-bottom:8px}
+  .book-side .call-box{background:#0e2a47;color:#eaf1f8;border-radius:12px;padding:20px;text-align:center}
+  .book-side .call-box .num{font-family:Poppins,sans-serif;font-weight:800;font-size:1.5rem;display:block;margin:6px 0 2px}
+  .book-side .call-box a{color:#fff;text-decoration:none}
+  .book-side .call-box .sub{font-size:.8rem;color:#9fb6cf}
+</style>
+${UTIL}
+${HEADER}
+
+<section class="book-hero" id="top">
+  <div class="book-wrap">
+    <span class="eyebrow">Book online</span>
+    <h1>Request your Austin plumbing appointment.</h1>
+    <p>Tell us what is going on and when works for you. We will call to confirm your time, often same-day. Prefer to talk now? Call or text ${PHONE_DISPLAY}.</p>
+    <div class="trust"><span>Licensed M40109</span><span>Family-owned since 2012</span><span>Calls answered 24/7</span><span>Hablamos Español</span></div>
+  </div>
+</section>
+
+<section class="book-main">
+  <div class="book-wrap book-grid">
+    <div class="book-card">
+      <form id="bookform" class="book-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="WEB3FORMS_KEY_PENDING" />
+        <input type="hidden" name="subject" value="New booking request — Rooter-Man of Austin website" />
+        <input type="hidden" name="from_name" value="Rooter-Man of Austin website" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="fg"><label for="bk-name">Full name</label><input id="bk-name" name="name" required autocomplete="name" /></div>
+        <div class="fg2">
+          <div class="fg"><label for="bk-phone">Phone</label><input id="bk-phone" name="phone" type="tel" required autocomplete="tel" /></div>
+          <div class="fg"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" autocomplete="email" /></div>
+        </div>
+        <div class="fg"><label for="bk-addr">Service address</label><input id="bk-addr" name="service_address" autocomplete="street-address" placeholder="Street, city, ZIP" /></div>
+        <div class="fg"><label for="bk-svc">What do you need?</label><select id="bk-svc" name="service_needed">${SERVICE_OPTS}</select></div>
+        <div class="fg2">
+          <div class="fg"><label for="bk-date">Preferred date</label><input id="bk-date" name="preferred_date" type="date" /></div>
+          <div class="fg"><label for="bk-time">Preferred time</label><select id="bk-time" name="preferred_time">${TIME_OPTS}</select></div>
+        </div>
+        <div class="fg"><label for="bk-note">Tell us about the problem</label><textarea id="bk-note" name="details" rows="3" placeholder="A quick description helps us send the right plumber."></textarea></div>
+        <button class="btn btn-book btn-lg" type="submit">Request Appointment</button>
+        <p class="book-fine">We answer 24/7 and will call to confirm your time. For an active emergency, call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
+      </form>
+      <div id="bookok" class="book-ok" hidden>
+        <div class="chk"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2>Request received</h2>
+        <p>Thanks! We have your request and will call shortly to confirm your appointment time.</p>
+        <p>Need us sooner? Call or text <a href="${PHONE_TEL}" style="color:#c0261f;font-weight:700;text-decoration:none">${PHONE_DISPLAY}</a>.</p>
+      </div>
+    </div>
+    <aside class="book-side">
+      <h3>What happens next</h3>
+      <ol>
+        <li>We review your request and call to confirm the time that works best, often same-day.</li>
+        <li>A licensed plumber arrives and gives you upfront pricing before any work begins.</li>
+        <li>The job is done right, backed by our warranty. New customers save 10%.</li>
+      </ol>
+      <div class="call-box">
+        <span>Rather book by phone?</span>
+        <a class="num" href="${PHONE_TEL}">${PHONE_DISPLAY}</a>
+        <span class="sub">Answered 24/7 · Hablamos Español</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+${FOOTER}
+<script>
+(function(){
+  var f=document.getElementById('bookform'); if(!f) return;
+  var d=document.getElementById('bk-date'); if(d){try{d.min=new Date().toISOString().split('T')[0];}catch(e){}}
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var key=(f.querySelector('[name=access_key]')||{}).value||'';
+    var fine=f.querySelector('.book-fine');
+    if(!key || key.indexOf('PENDING')>-1){
+      if(fine) fine.innerHTML='Online booking is being finalized. Please call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a> to schedule right now.';
+      return;
+    }
+    var btn=f.querySelector('button[type=submit]'); var label=btn.textContent; btn.disabled=true; btn.textContent='Sending...';
+    try{
+      var res=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+      var data=await res.json();
+      if(data && data.success){
+        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
+        f.hidden=true; var ok=document.getElementById('bookok'); ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'});
+      } else { throw new Error((data&&data.message)||'error'); }
+    }catch(err){
+      btn.disabled=false; btn.textContent=label;
+      if(fine) fine.innerHTML='Something went wrong sending your request. Please call or text <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a> and we will book you right away.';
+    }
+  });
+})();
+</script>
+${TAIL}`;
+  mkdirSync("book", { recursive: true });
+  writeFileSync("book/index.html", html);
+  console.log("wrote", "book/");
+}
+
 services.forEach(buildServicePage);
 cities.forEach(buildCityPage);
-console.log("done:", services.length + cities.length, "pages");
+buildBookingPage();
+console.log("done:", services.length + cities.length + 1, "pages");
