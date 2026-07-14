@@ -108,7 +108,7 @@ const HEADER = `
     </nav>
     <div class="nav-cta">
       <a class="btn btn-book" href="${PHONE_TEL}">${PHONE_SVG} ${PHONE_DISPLAY}</a>
-      <a class="btn btn-ghost" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+      <a class="btn btn-ghost" href="${BOOK_URL}">Book Online</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bars"></span></button>
     </div>
   </div>
@@ -143,7 +143,7 @@ const HEADER = `
   </nav>
   <div class="mobile-foot">
     <a class="phone" href="tel:+15126451441">(512) 645-1441</a>
-    <a class="btn btn-book" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+    <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
   </div>
 </div>`;
 
@@ -254,7 +254,7 @@ function finalCta(h, p) {
     <p class="reveal">${p}</p>
     <div class="hero-cta reveal">
       <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-      <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+      <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
     </div>
     <div class="fine reveal">Calls answered 24/7 · Hablamos Español</div>
   </div>
@@ -314,7 +314,7 @@ const FOOTER = `
 
 <div class="callbar">
   <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call Now</a>
-  <a class="btn btn-book" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+  <a class="btn btn-book" href="${BOOK_URL}">Book Online</a>
 </div>`;
 
 function schema(pageName, slug, faqs, extraAreas) {
@@ -613,7 +613,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -689,7 +689,7 @@ ${HEADER}
       </div>
       <div class="hero-cta">
         <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
-        <a class="btn btn-book btn-lg" href="${BOOK_URL}" onclick="STWidgetManager('ws-open');return false;">Book Online</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL}">Book Online</a>
       </div>
       <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
     </div>
@@ -765,6 +765,9 @@ function buildBookingPage() {
   .book-form button[type=submit]{width:100%;margin-top:6px;justify-content:center}
   .book-fine{font-size:.82rem;color:#5a6b7d;margin-top:12px;text-align:center}
   .book-fine a{color:#c0261f;font-weight:700;text-decoration:none}
+  .book-or{display:flex;align-items:center;text-align:center;color:#8697a8;font-size:.78rem;margin:22px 0;text-transform:uppercase;letter-spacing:.05em}
+  .book-or::before,.book-or::after{content:"";flex:1;height:1px;background:#e2e9f1}
+  .book-or span{padding:0 12px}
   .book-ok{background:#fff;border:1px solid #cfe6d3;border-radius:14px;padding:40px 28px;text-align:center}
   .book-ok .chk{width:56px;height:56px;border-radius:50%;background:#e7f6ea;color:#1e9e4a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
   .book-ok h2{font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 8px}
@@ -792,10 +795,32 @@ ${HEADER}
 <section class="book-main">
   <div class="book-wrap book-grid">
     <div class="book-card">
-      <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 8px;font-size:1.4rem">Pick a time that works for you.</h2>
-      <p style="color:#5a6b7d;margin:0 0 22px">Open our online scheduler, choose your service and an appointment window, and we confirm your visit, often same-day.</p>
-      <button type="button" class="btn btn-book btn-lg" onclick="STWidgetManager('ws-open');return false;" style="width:100%;justify-content:center">Schedule My Appointment</button>
-      <p class="book-fine">We answer 24/7. For an active emergency, call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
+      <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Book your appointment online</h2>
+      <p style="color:#5a6b7d;margin:0 0 16px">Pick your own time in our live scheduler.</p>
+      <button type="button" class="btn btn-book btn-lg" onclick="STWidgetManager('ws-open');return false;" style="width:100%;justify-content:center">Open the Scheduler</button>
+      <div class="book-or"><span>or send us a request</span></div>
+      <form id="bookform" class="book-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="WEB3FORMS_KEY_PENDING" />
+        <input type="hidden" name="subject" value="New booking request — Rooter-Man of Austin website" />
+        <input type="hidden" name="from_name" value="Rooter-Man of Austin website" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="fg"><label for="bk-name">Full name</label><input id="bk-name" name="name" required autocomplete="name" /></div>
+        <div class="fg2">
+          <div class="fg"><label for="bk-phone">Phone</label><input id="bk-phone" name="phone" type="tel" required autocomplete="tel" /></div>
+          <div class="fg"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" autocomplete="email" /></div>
+        </div>
+        <div class="fg"><label for="bk-addr">Service address</label><input id="bk-addr" name="service_address" autocomplete="street-address" placeholder="Street, city, ZIP" /></div>
+        <div class="fg"><label for="bk-svc">What do you need?</label><select id="bk-svc" name="service_needed">${SERVICE_OPTS}</select></div>
+        <div class="fg"><label for="bk-note">Tell us about the problem</label><textarea id="bk-note" name="details" rows="3" placeholder="A quick description helps us send the right plumber."></textarea></div>
+        <button class="btn btn-book btn-lg" type="submit">Send Request</button>
+        <p class="book-fine">We answer 24/7. For an active emergency, call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
+      </form>
+      <div id="bookok" class="book-ok" hidden>
+        <div class="chk"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2>Request received</h2>
+        <p>Thanks! We have your request and will call shortly to confirm your appointment time.</p>
+        <p>Need us sooner? Call <a href="${PHONE_TEL}" style="color:#c0261f;font-weight:700;text-decoration:none">${PHONE_DISPLAY}</a>.</p>
+      </div>
     </div>
         <aside class="book-side">
       <h3>What happens next</h3>
@@ -814,6 +839,32 @@ ${HEADER}
 </section>
 
 ${FOOTER}
+<script>
+(function(){
+  var f=document.getElementById('bookform'); if(!f) return;
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var key=(f.querySelector('[name=access_key]')||{}).value||'';
+    var fine=f.querySelector('.book-fine');
+    if(!key || key.indexOf('PENDING')>-1){
+      if(fine) fine.innerHTML='Request forms are being connected. To book now, use the scheduler above or call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.';
+      return;
+    }
+    var btn=f.querySelector('button[type=submit]'); var label=btn.textContent; btn.disabled=true; btn.textContent='Sending...';
+    try{
+      var res=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+      var data=await res.json();
+      if(data && data.success){
+        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
+        f.hidden=true; var ok=document.getElementById('bookok'); ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'});
+      } else { throw new Error((data&&data.message)||'error'); }
+    }catch(err){
+      btn.disabled=false; btn.textContent=label;
+      if(fine) fine.innerHTML='Something went wrong. Please call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a> and we will book you right away.';
+    }
+  });
+})();
+</script>
 ${TAIL}`;
   mkdirSync("book", { recursive: true });
   writeFileSync("book/index.html", html);
