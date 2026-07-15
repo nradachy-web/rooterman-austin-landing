@@ -50,6 +50,7 @@ function head(title, desc, slug) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-18245522940');
+  gtag('config', 'G-7L3LNTM6JM');
 </script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}" />
