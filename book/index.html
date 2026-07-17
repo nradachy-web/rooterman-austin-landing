@@ -154,7 +154,8 @@
     <div class="book-card">
       <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Schedule instantly</h2>
       <p style="color:#5a6b7d;margin:0 0 18px">Pick the date and time that work for you in our live scheduler.</p>
-      <button class="btn btn-book btn-lg" type="button" style="width:100%" onclick="STWidgetManager('ws-open')">Open the Scheduler</button>
+      <button id="stopen" class="btn btn-book btn-lg" type="button" style="width:100%">Open the Scheduler</button>
+      <p id="stnote" class="book-fine" hidden>The live scheduler is still being connected. Book with the request form below or call <a href="tel:+15126451441">(512) 645-1441</a>.</p>
       <div class="book-or"><span>or send a request and we call you</span></div>
       <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Request your appointment</h2>
       <p style="color:#5a6b7d;margin:0 0 18px">Tell us what you need and your preferred time, and we will call to confirm, often same-day.</p>
@@ -253,6 +254,23 @@
   <a class="btn btn-book" href="../book/">Book Online</a>
 </div>
 <script>
+(function(){
+  var sb=document.getElementById('stopen');
+  if(sb){sb.addEventListener('click',function(){
+    try{STWidgetManager('ws-open')}catch(e){}
+    setTimeout(function(){
+      var open=[].slice.call(document.querySelectorAll('div')).some(function(d){
+        if(!d.querySelector('iframe[src*="servicetitan"]')) return false;
+        var s=getComputedStyle(d);
+        return s.position==='fixed' && s.visibility!=='hidden' && s.display!=='none';
+      });
+      if(!open){
+        var n=document.getElementById('stnote'); if(n) n.hidden=false;
+        var f=document.getElementById('bookform'); if(f) f.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    },1600);
+  });}
+})();
 (function(){
   var f=document.getElementById('bookform'); if(!f) return;
   f.addEventListener('submit', async function(e){
