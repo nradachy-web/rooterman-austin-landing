@@ -892,7 +892,58 @@ ${TAIL}`;
   console.log("wrote", "book/");
 }
 
+// Legacy Scorpion-era URLs (from Wayback CDX + Google index). Each gets a stub that
+// redirects users and tells Google the page moved, so stale SERP snippets showing
+// Scorpion's 737 tracking number drop out of the index. Not in sitemap on purpose.
+const legacyStubs = [
+  ["plumbing-services", "/"],
+  ["plumbing-services/drain-cleaning", "/drain-cleaning/"],
+  ["plumbing-services/drain-cleaning/hydro-jetting", "/drain-cleaning/"],
+  ["plumbing-services/drain-repair", "/drain-cleaning/"],
+  ["plumbing-services/leak-detection-repair", "/plumbing-repair/"],
+  ["plumbing-services/piping-repiping", "/plumbing-repair/"],
+  ["plumbing-services/water-lines", "/plumbing-repair/"],
+  ["plumbing-services/water-pressure-repair", "/plumbing-repair/"],
+  ["plumbing-services/septic-pumping", "/sewer-septic/"],
+  ["plumbing-services/sewer-services", "/sewer-septic/"],
+  ["plumbing-services/water-heaters", "/water-heaters/"],
+  ["plumbing-services/water-heaters/tankless-water-heaters", "/water-heaters/"],
+  ["contact-us", "/book/"],
+  ["about-us", "/"],
+  ["areas-we-serve", "/#areas"],
+  ["coupons", "/#coupons"],
+  ["coupons/print", "/#coupons"],
+  ["reviews", "/#reviews"],
+  ["privacy-policy", "/"],
+  ["site-map", "/"],
+  ["site-search", "/"],
+  ["blog", "/"],
+  ["blog/categories", "/"],
+];
+
+function buildLegacyStubs() {
+  for (const [oldPath, target] of legacyStubs) {
+    const targetUrl = BASE.replace(/\/$/, "") + target;
+    const canonical = BASE.replace(/\/$/, "") + target.split("#")[0];
+    const html = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rooter-Man of Austin | This page has moved</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${canonical}">
+<meta http-equiv="refresh" content="0;url=${targetUrl}">
+<script>location.replace(${JSON.stringify(targetUrl)});</script>
+</head><body>
+<p>This page has moved. Continue to <a href="${targetUrl}">rootermanofaustin.com</a> or call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
+</body></html>
+`;
+    mkdirSync(oldPath, { recursive: true });
+    writeFileSync(oldPath + "/index.html", html);
+  }
+  console.log("wrote", legacyStubs.length, "legacy stubs");
+}
+
 services.forEach(buildServicePage);
 cities.forEach(buildCityPage);
 buildBookingPage();
-console.log("done:", services.length + cities.length + 1, "pages");
+buildLegacyStubs();
+console.log("done:", services.length + cities.length + 1, "pages +", legacyStubs.length, "stubs");
