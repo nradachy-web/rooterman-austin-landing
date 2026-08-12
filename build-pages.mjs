@@ -347,7 +347,9 @@ const TAIL = `<!-- ServiceTitan Web Scheduler -->
     y.src=r;u.parentNode.insertBefore(y,u);q[t]('init','155624fb-92ba-4fa8-bea1-10b034d2927d');
   })(window,document,'script','https://static.servicetitan.com/webscheduler/shim.js','STWidgetManager');
 </script>
-<script src="${R}assets/site.js"></script>\n</body>\n</html>\n`;
+<script src="${R}assets/site.js"></script>
+<!-- CallRail dynamic number insertion -->
+<script type="text/javascript" src="//cdn.callrail.com/companies/895224542/8fbad8958ca67ff146a0/12/swap.js"></script>\n</body>\n</html>\n`;
 
 /* ============================= SERVICE PAGES ============================= */
 
