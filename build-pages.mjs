@@ -274,12 +274,12 @@ const FOOTER = `
       <div>
         <h4>Services</h4>
         <div class="foot-list">
-          <a href=R + "drain-cleaning/">Drain Cleaning</a>
-          <a href=R + "plumbing-repair/">Plumbing Repair</a>
-          <a href=R + "water-heaters/">Water Heaters</a>
-          <a href=R + "sewer-septic/">Sewer &amp; Septic</a>
-          <a href=R + "emergency-plumber/">Emergency Plumber</a>
-          <a href=R + "commercial-plumbing/">Commercial Plumbing</a>
+          <a href="${R}drain-cleaning/">Drain Cleaning</a>
+          <a href="${R}plumbing-repair/">Plumbing Repair</a>
+          <a href="${R}water-heaters/">Water Heaters</a>
+          <a href="${R}sewer-septic/">Sewer &amp; Septic</a>
+          <a href="${R}emergency-plumber/">Emergency Plumber</a>
+          <a href="${R}commercial-plumbing/">Commercial Plumbing</a>
         </div>
       </div>
       <div>
@@ -949,3 +949,7 @@ cities.forEach(buildCityPage);
 buildBookingPage();
 buildLegacyStubs();
 console.log("done:", services.length + cities.length + 1, "pages +", legacyStubs.length, "stubs");
+
+// Verify the output before it ships. Fails the build (exit 1) on unquoted href/src values,
+// leaked ${...} placeholders, or internal links that point at nothing. See check-links.mjs.
+await import("./check-links.mjs");
