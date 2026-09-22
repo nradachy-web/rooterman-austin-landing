@@ -414,3 +414,14 @@
     .hero-v4 .wrap{padding-top:52px;padding-bottom:70px}
     .hero-v4 .hero-bg::after{background:linear-gradient(180deg,rgba(2,12,26,.82),rgba(2,12,26,.7))}
   }
+
+  /* ============ 2026-09-22 expansion: wider services menu, matrix cross-links ============ */
+  .menu.menu-wide{min-width:840px;grid-template-columns:1fr 1fr 1fr}
+  .rev-src .src-chip{max-width:100%}
+  @media(max-width:760px){.checks .check div b{font-size:.96rem}}
+  /* coupon buttons and large CTAs may wrap on phones; a no-wrap button forced 333px of layout at 320px */
+  @media(max-width:760px){.coupon .btn{white-space:normal;text-align:center;line-height:1.25}}
+  @media(max-width:400px){.coupon{padding:1.3rem 1.1rem}.btn-lg{white-space:normal;text-align:center;line-height:1.25;padding:1rem 1.3rem}.hero-cta .btn-lg{width:100%}}
+  /* grid tracks must be allowed to shrink below min-content on narrow phones */
+  @media(max-width:760px){.areas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-grid-v4,.hero-grid,.svc-grid,.rev-grid,.steps,.checks,.band .wrap{grid-template-columns:minmax(0,1fr)}.tp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:400px){.areas-grid{gap:8px}.area{padding:.8rem .7rem}.area b{font-size:.92rem}}
