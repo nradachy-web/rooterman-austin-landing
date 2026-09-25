@@ -931,7 +931,7 @@ ${FOOTER()}
       var res=await fetch(f.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}});
       var data=await res.json();
       if(data && data.success){
-        if(!isTest && typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
+        if(!isTest && typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});gtag('event','generate_lead',{form_id:'book'});}
         toLedger();
         f.hidden=true; var ok=document.getElementById('bookok'); ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'});
       } else { throw new Error((data&&data.message)||'error'); }
