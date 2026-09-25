@@ -321,14 +321,25 @@
       return;
     }
     var btn=f.querySelector('button[type=submit]'); var label=btn.textContent; btn.disabled=true; btn.textContent='Sending...';
+    // Ledger copy for the Modern Apex portal, read before the form hides. Posted whatever
+    // Web3Forms answers, so a request is on record even if the email lane fails.
+    // ?apx_test=1 marks a verification visit: test row, no Ads conversion.
+    var fd=new FormData(f);
+    var isTest=/[?&]apx_test=1(&|$)/.test(location.search);
+    var ledger={name:String(fd.get('name')||''),email:String(fd.get('email')||''),phone:String(fd.get('phone')||''),
+      message:[['Address',fd.get('service_address')],['Service',fd.get('service_needed')],['Details',fd.get('details')]]
+        .filter(function(x){return x[1]}).map(function(x){return x[0]+': '+x[1]}).join('\n'),isTest:isTest};
+    function toLedger(){try{if(window.apexAttribution){window.apexAttribution.attach(ledger);}}catch(e){}}
     try{
-      var res=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+      var res=await fetch(f.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}});
       var data=await res.json();
       if(data && data.success){
-        if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
+        if(!isTest && typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18245522940/zzFhCPbl2sAcEPyrkvxD'});}
+        toLedger();
         f.hidden=true; var ok=document.getElementById('bookok'); ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'});
       } else { throw new Error((data&&data.message)||'error'); }
     }catch(err){
+      toLedger();
       btn.disabled=false; btn.textContent=label;
       if(fine) fine.innerHTML='Something went wrong. Please call <a href="tel:+15126451441">(512) 645-1441</a> and we will book you right away.';
     }
@@ -343,6 +354,8 @@
   })(window,document,'script','https://static.servicetitan.com/webscheduler/shim.js','STWidgetManager');
 </script>
 <script src="../assets/site.js"></script>
+<!-- Modern Apex attribution: keeps the ad click id with each /book/ request in the lead ledger -->
+<script async src="../assets/apex-attribution.js" data-token="1be3c411d6010f6643aa12883fa39253"></script>
 <!-- CallRail dynamic number insertion -->
 <script type="text/javascript" src="//cdn.callrail.com/companies/895224542/8fbad8958ca67ff146a0/12/swap.js"></script>
 </body>
