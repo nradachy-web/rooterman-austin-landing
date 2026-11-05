@@ -425,3 +425,14 @@
   /* grid tracks must be allowed to shrink below min-content on narrow phones */
   @media(max-width:760px){.areas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-grid-v4,.hero-grid,.svc-grid,.rev-grid,.steps,.checks,.band .wrap{grid-template-columns:minmax(0,1fr)}.tp-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:400px){.areas-grid{gap:8px}.area{padding:.8rem .7rem}.area b{font-size:.92rem}}
+
+  /* ============ 2026-11-04: 2026 Best of Round Rock award (2nd place, Best Plumbing Service) ============ */
+  .tp-award{display:flex;align-items:center;gap:.9rem;margin-top:1rem;padding:.75rem .9rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+  .tp-award img{width:58px;height:58px;flex:none;background:#fff;border-radius:50%;padding:4px}
+  .tp-award b{display:block;color:#fff;font-size:.95rem;line-height:1.25}
+  .tp-award span{display:block;font-size:.8rem;color:#a9c4e0;line-height:1.35;margin-top:.15rem}
+  .award{display:flex;align-items:center;gap:1.4rem;max-width:660px;margin:30px auto 0;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:1.2rem 1.6rem;box-shadow:var(--shadow-sm)}
+  .award img{width:112px;height:112px;flex:none}
+  .award h3{font-size:1.25rem;color:var(--navy);line-height:1.2;margin-top:.3rem}
+  .award p{margin-top:.4rem;font-size:.92rem;color:var(--muted);line-height:1.5}
+  @media(max-width:560px){.award{flex-direction:column;text-align:center;padding:1.3rem 1.2rem;gap:.9rem}.award img{width:104px;height:104px}}

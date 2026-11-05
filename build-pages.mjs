@@ -230,6 +230,17 @@ function coupons(focus) {
 </section>`;
 }
 
+// 2026 Best of Round Rock award (Sneha, 2026-11-04). Mirrored in index.html reviews section.
+const AWARD = () => `
+    <div class="award reveal">
+      <img src="${R}assets/client/best-of-round-rock-2026.png" width="112" height="112" loading="lazy" alt="2026 Best of Round Rock winner badge. Rooter-Man placed 2nd for Best Plumbing Service." />
+      <div>
+        <span class="eyebrow">Voted by the community</span>
+        <h3>2nd Place, Best Plumbing Service</h3>
+        <p>Rooter-Man took 2nd place for Best Plumbing Service in the 2026 Best of Round Rock awards, with more than 61,000 votes cast. Thank you, Round Rock.</p>
+      </div>
+    </div>`;
+
 function reviewsBlock(keys, title) {
   const cards = keys.map((k) => `<div class="rev reveal"><div class="stars">★★★★★</div><p>"${REVIEWS[k].q}"</p><div class="who">${REVIEWS[k].who}</div></div>`).join("\n      ");
   return `
@@ -241,7 +252,7 @@ function reviewsBlock(keys, title) {
     </div>
     <div class="rev-grid">
       ${cards}
-    </div>
+    </div>${AWARD()}
     <div class="agg reveal">
       <span class="g-badge"><span class="num">4.9</span><span class="stars">★★★★★</span><span>1,200+ Google reviews</span></span>
     </div>
@@ -370,6 +381,7 @@ function schema(pageName, slug, faqs, extraAreas) {
     address: { "@type": "PostalAddress", streetAddress: "15503 Patrica St", addressLocality: "Austin", addressRegion: "TX", postalCode: "78728", addressCountry: "US" },
     areaServed: extraAreas || AREA_SERVED,
     foundingDate: "2012",
+    award: "2nd Place, Best Plumbing Service, 2026 Best of Round Rock",
     knowsLanguage: ["en", "es"],
     slogan: "Rooter-Man To the Rescue",
   };
