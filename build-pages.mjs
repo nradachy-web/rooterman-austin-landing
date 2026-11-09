@@ -309,7 +309,7 @@ const FOOTER = () => `
         <img class="foot-mascot" src="${R}assets/client/rm-mascot.png" alt="Rooter-Man mascot" loading="lazy" />
       </div>
       <div>
-        <h4>Services</h4>
+        <h3>Services</h3>
         <div class="foot-list">
           <a href="${R}drain-cleaning/">Drain Cleaning</a>
           <a href="${R}plumbing-repair/">Plumbing Repair</a>
@@ -328,7 +328,7 @@ const FOOTER = () => `
         </div>
       </div>
       <div>
-        <h4>Service Areas</h4>
+        <h3>Service Areas</h3>
         <div class="foot-list">
           <a href="${R}#areas">Austin</a>
           <a href="${R}plumber-cedar-park/">Cedar Park</a>
@@ -346,7 +346,7 @@ const FOOTER = () => `
         </div>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <div class="foot-list">
           <a class="foot-phone" href="${PHONE_TEL}">${PHONE_DISPLAY}</a>
           <span>15503 Patrica St</span>
@@ -393,6 +393,7 @@ function schema(pageName, slug, faqs, extraAreas) {
   return `<script type="application/ld+json">${JSON.stringify(plumber)}</script>\n<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`;
 }
 
+// NOTE: optimize-html.mjs rewrites these third-party tags into one deferred loader after the build.
 const TAIL = () => `<!-- ServiceTitan Web Scheduler -->
 <script>
   (function(q,w,e,r,t,y,u){q[t]=q[t]||function(){(q[t].q=q[t].q||[]).push(arguments)};
@@ -808,7 +809,7 @@ function buildBookingPage() {
   .book-wrap{max-width:1120px;margin:0 auto;padding:0 20px}
   .book-hero{background:#0e2a47;color:#eaf1f8;padding:64px 0 40px;text-align:center}
   .book-hero .eyebrow{color:#ff5a4d}
-  .book-hero h1{font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:.4rem 0 .6rem;color:#fff}
+  .book-hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:.4rem 0 .6rem;color:#fff}
   .book-hero p{max-width:60ch;margin:0 auto;color:#c2d2e2;font-size:1.05rem}
   .book-hero .trust{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:18px;font-size:.85rem;color:#9fb6cf;font-weight:600}
   .book-main{padding:44px 0 72px;background:#f4f7fb}
@@ -824,24 +825,25 @@ function buildBookingPage() {
   .book-form button[type=submit]{width:100%;margin-top:6px;justify-content:center}
   .book-fine{font-size:.82rem;color:#5a6b7d;margin-top:12px;text-align:center}
   .book-fine a{color:#c0261f;font-weight:700;text-decoration:none}
-  .book-or{display:flex;align-items:center;text-align:center;color:#8697a8;font-size:.78rem;margin:22px 0;text-transform:uppercase;letter-spacing:.05em}
+  .book-or{display:flex;align-items:center;text-align:center;color:#647382;font-size:.78rem;margin:22px 0;text-transform:uppercase;letter-spacing:.05em}
   .book-or::before,.book-or::after{content:"";flex:1;height:1px;background:#e2e9f1}
   .book-or span{padding:0 12px}
   .book-ok{background:#fff;border:1px solid #cfe6d3;border-radius:14px;padding:40px 28px;text-align:center}
   .book-ok .chk{width:56px;height:56px;border-radius:50%;background:#e7f6ea;color:#1e9e4a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-  .book-ok h2{font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 8px}
+  .book-ok h2{font-family:var(--display);color:#0e2a47;margin:0 0 8px}
   .book-ok p{color:#5a6b7d;max-width:44ch;margin:0 auto 6px}
-  .book-side h3{font-family:Poppins,sans-serif;color:#0e2a47;font-size:1.15rem;margin:0 0 12px}
+  .book-side h3{font-family:var(--display);color:#0e2a47;font-size:1.15rem;margin:0 0 12px}
   .book-side ol{margin:0 0 22px;padding-left:1.1rem;color:#3a4b5c;line-height:1.6}
   .book-side ol li{margin-bottom:8px}
   .book-side .call-box{background:#0e2a47;color:#eaf1f8;border-radius:12px;padding:20px;text-align:center}
-  .book-side .call-box .num{font-family:Poppins,sans-serif;font-weight:800;font-size:1.5rem;display:block;margin:6px 0 2px}
+  .book-side .call-box .num{font-family:var(--display);font-weight:800;font-size:1.5rem;display:block;margin:6px 0 2px}
   .book-side .call-box a{color:#fff;text-decoration:none}
   .book-side .call-box .sub{font-size:.8rem;color:#9fb6cf}
 </style>
 ${UTIL()}
 ${HEADER()}
 
+<main>
 <section class="book-hero" id="top">
   <div class="book-wrap">
     <span class="eyebrow">Book online</span>
@@ -854,12 +856,12 @@ ${HEADER()}
 <section class="book-main">
   <div class="book-wrap book-grid">
     <div class="book-card">
-      <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Schedule instantly</h2>
+      <h2 style="font-family:var(--display);color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Schedule instantly</h2>
       <p style="color:#5a6b7d;margin:0 0 18px">Pick the date and time that work for you in our live scheduler.</p>
       <button id="stopen" class="btn btn-book btn-lg" type="button" style="width:100%">Open the Scheduler</button>
       <p id="stnote" class="book-fine" hidden>The live scheduler is still being connected. Book with the request form below or call <a href="${PHONE_TEL}">${PHONE_DISPLAY}</a>.</p>
       <div class="book-or"><span>or send a request and we call you</span></div>
-      <h2 style="font-family:Poppins,sans-serif;color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Request your appointment</h2>
+      <h2 style="font-family:var(--display);color:#0e2a47;margin:0 0 6px;font-size:1.35rem">Request your appointment</h2>
       <p style="color:#5a6b7d;margin:0 0 18px">Tell us what you need and your preferred time, and we will call to confirm, often same-day.</p>
       <form id="bookform" class="book-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="9dcdf8a3-7972-4fbe-9c03-066e0c92b0f6" />
@@ -900,6 +902,7 @@ ${HEADER()}
   </div>
 </section>
 
+</main>
 ${FOOTER()}
 <script>
 (function(){
@@ -1940,6 +1943,11 @@ R = "../";
 console.log("wrote", matrixCount, "service x city pages");
 writeSitemap();
 console.log("done:", services.length + expansionHubs.length + cities.length + newAreas.length + 1 + 1 + matrixCount, "pages +", legacyStubs.length, "stubs");
+
+// Speed pass: inline CSS + fonts, responsive AVIF/WebP images, one loader for third-party scripts.
+// The templates above stay plain (site.css link, plain <img>, gtag / CallRail / ServiceTitan tags);
+// optimize-html.mjs rewrites the built files, including the hand-maintained index.html.
+await import("./optimize-html.mjs");
 
 // Verify the output before it ships. Fails the build (exit 1) on unquoted href/src values,
 // leaked ${...} placeholders, or internal links that point at nothing. See check-links.mjs.

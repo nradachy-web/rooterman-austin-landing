@@ -7,15 +7,18 @@
     --shadow:0 22px 60px -28px rgba(0,43,92,.45);
     --shadow-sm:0 10px 28px -16px rgba(0,43,92,.4);
     --r:14px; --maxw:1180px;
-    --display:"Poppins",system-ui,sans-serif;
-    --body:"Hanken Grotesk",system-ui,sans-serif;
-    --mono:"Hanken Grotesk",system-ui,sans-serif;
+    --display:"Poppins","Poppins Fallback",system-ui,sans-serif;
+    --body:"Hanken Grotesk","Hanken Fallback",system-ui,sans-serif;
+    --mono:"Hanken Grotesk","Hanken Fallback",system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  img{max-width:100%;display:block;height:auto}
+  picture{display:contents}
+  picture>source{display:none}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.12;letter-spacing:-.02em;color:var(--navy)}
   .eyebrow{font-family:var(--mono);font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
@@ -200,13 +203,13 @@
   /* footer */
   footer{background:#06152b;color:#9fb6cf;padding:56px 0 36px;font-size:.92rem}
   .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.08)}
-  footer h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:.9rem;font-weight:600}
-  footer img{height:40px;margin-bottom:.9rem;filter:brightness(0) invert(1);opacity:.95}
+  footer h3,footer h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:.9rem;font-weight:600}
+  footer img{height:40px;width:auto;margin-bottom:.9rem;filter:brightness(0) invert(1);opacity:.95}
   .foot-list{display:flex;flex-direction:column;gap:.4rem}
   footer a:hover{color:#7FB6E8}
   .foot-phone{font-family:var(--mono);font-weight:700;font-size:1.15rem;color:#fff}
   .foot-bottom{padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-family:var(--mono);font-size:.72rem;color:#6b88a8}
-  .sms{margin-top:18px;font-size:.68rem;color:#5e7a99;line-height:1.5;max-width:100%}
+  .sms{margin-top:18px;font-size:.68rem;color:#8aa3bf;line-height:1.5;max-width:100%}
 
   /* mobile call bar */
   .callbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:.6rem;padding:.7rem 14px calc(.7rem + env(safe-area-inset-bottom));background:rgba(6,21,43,.97);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.1)}
@@ -299,7 +302,7 @@
 
   /* footer logo chip */
   .foot-logochip{display:inline-block;background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:1rem}
-  .foot-logochip img{height:44px;margin:0;filter:none;opacity:1}
+  .foot-logochip img{height:44px;width:auto;margin:0;filter:none;opacity:1}
   .foot-mascot{height:74px !important;width:auto;filter:none !important;opacity:1 !important;margin-top:.8rem}
 
   /* two-column content band variant */
@@ -393,7 +396,7 @@
   .hero-v4 h1{margin-top:.9rem}
   .hero-v4 .sub{font-size:1.08rem;color:#d4e3f4;margin-top:1rem;max-width:52ch}
   .trust-panel{position:relative;background:rgba(10,18,30,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.8rem 1.8rem 1.5rem;box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
-  .trust-panel h3{color:#fff;font-size:1.35rem;margin-bottom:1.1rem}
+  .trust-panel h2,.trust-panel h3{color:#fff;font-size:1.35rem;margin-bottom:1.1rem}
   .tp-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .tp-tile{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;text-align:center}
   .tp-tile b{display:block;font-family:var(--display);font-weight:700;font-size:1.6rem;color:#fff;line-height:1.1}

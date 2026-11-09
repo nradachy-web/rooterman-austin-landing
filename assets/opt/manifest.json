@@ -1,0 +1,346 @@
+{
+ "assets/client/best-of-round-rock-2026.png": {
+  "fallback": "best-of-round-rock-2026-280.png",
+  "h": 280,
+  "stem": "best-of-round-rock-2026",
+  "w": 280,
+  "widths": [
+   116,
+   224,
+   280
+  ]
+ },
+ "assets/client/brokenpipe.jpg": {
+  "fallback": "brokenpipe-206.jpg",
+  "h": 206,
+  "stem": "brokenpipe",
+  "w": 206,
+  "widths": [
+   206
+  ]
+ },
+ "assets/client/drain.jpg": {
+  "fallback": "drain-600.jpg",
+  "h": 800,
+  "stem": "drain",
+  "w": 600,
+  "widths": [
+   480,
+   600
+  ]
+ },
+ "assets/client/leak.jpg": {
+  "fallback": "leak-526.jpg",
+  "h": 935,
+  "stem": "leak",
+  "w": 526,
+  "widths": [
+   480,
+   526
+  ]
+ },
+ "assets/client/prv.jpg": {
+  "fallback": "prv-206.jpg",
+  "h": 206,
+  "stem": "prv",
+  "w": 206,
+  "widths": [
+   206
+  ]
+ },
+ "assets/client/rm-mascot.png": {
+  "fallback": "rm-mascot-225.png",
+  "h": 259,
+  "stem": "rm-mascot",
+  "w": 225,
+  "widths": [
+   112,
+   225
+  ]
+ },
+ "assets/client/rooterman-wordmark.png": {
+  "fallback": "rooterman-wordmark-396.png",
+  "h": 397,
+  "stem": "rooterman-wordmark",
+  "w": 1189,
+  "widths": [
+   132,
+   264,
+   396
+  ]
+ },
+ "assets/client/underground3.jpg": {
+  "fallback": "underground3-800.jpg",
+  "h": 2016,
+  "stem": "underground3",
+  "w": 1512,
+  "widths": [
+   480,
+   800,
+   1200,
+   1512
+  ]
+ },
+ "assets/client/van1-hero.jpg": {
+  "fallback": "van1-hero-800.jpg",
+  "h": 1440,
+  "stem": "van1-hero",
+  "w": 1920,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600
+  ]
+ },
+ "assets/client/van3.jpg": {
+  "fallback": "van3-640.jpg",
+  "h": 480,
+  "stem": "van3",
+  "w": 640,
+  "widths": [
+   480,
+   640
+  ]
+ },
+ "assets/client/vancleaning.jpg": {
+  "fallback": "vancleaning-768.jpg",
+  "h": 1024,
+  "stem": "vancleaning",
+  "w": 768,
+  "widths": [
+   480,
+   768
+  ]
+ },
+ "assets/client/waterline.jpg": {
+  "fallback": "waterline-800.jpg",
+  "h": 2048,
+  "stem": "waterline",
+  "w": 1536,
+  "widths": [
+   480,
+   800,
+   1200,
+   1536
+  ]
+ },
+ "assets/client/work-castiron.jpg": {
+  "fallback": "work-castiron-229.jpg",
+  "h": 305,
+  "stem": "work-castiron",
+  "w": 229,
+  "widths": [
+   229
+  ]
+ },
+ "assets/client/work-media-14.jpg": {
+  "fallback": "work-media-14-800.jpg",
+  "h": 1134,
+  "stem": "work-media-14",
+  "w": 2016,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600
+  ]
+ },
+ "assets/client/work-media-17.jpg": {
+  "fallback": "work-media-17-800.jpg",
+  "h": 2016,
+  "stem": "work-media-17",
+  "w": 1134,
+  "widths": [
+   480,
+   800,
+   1134
+  ]
+ },
+ "assets/client/work-slab-sewer.jpg": {
+  "fallback": "work-slab-sewer-800.jpg",
+  "h": 1200,
+  "stem": "work-slab-sewer",
+  "w": 1600,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600
+  ]
+ },
+ "assets/client/work-tunnel.jpg": {
+  "fallback": "work-tunnel-229.jpg",
+  "h": 305,
+  "stem": "work-tunnel",
+  "w": 229,
+  "widths": [
+   229
+  ]
+ },
+ "assets/client/work-water-heater.jpg": {
+  "fallback": "work-water-heater-407.jpg",
+  "h": 305,
+  "stem": "work-water-heater",
+  "w": 407,
+  "widths": [
+   407
+  ]
+ },
+ "assets/generated/emergency-night-van.png": {
+  "fallback": "emergency-night-van-800.jpg",
+  "h": 768,
+  "stem": "emergency-night-van",
+  "w": 1408,
+  "widths": [
+   480,
+   800,
+   1200,
+   1408
+  ]
+ },
+ "assets/generated/hero-image-van-tech.png": {
+  "fallback": "hero-image-van-tech-800.jpg",
+  "h": 768,
+  "stem": "hero-image-van-tech",
+  "w": 1408,
+  "widths": [
+   480,
+   800,
+   1200,
+   1408
+  ]
+ },
+ "assets/generated/svc-drain-cleaning.png": {
+  "fallback": "svc-drain-cleaning-800.jpg",
+  "h": 896,
+  "stem": "svc-drain-cleaning",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-garbage-disposal.png": {
+  "fallback": "svc-garbage-disposal-800.jpg",
+  "h": 896,
+  "stem": "svc-garbage-disposal",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-hydro-jetting.png": {
+  "fallback": "svc-hydro-jetting-800.jpg",
+  "h": 896,
+  "stem": "svc-hydro-jetting",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-leak-detection.png": {
+  "fallback": "svc-leak-detection-800.jpg",
+  "h": 896,
+  "stem": "svc-leak-detection",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-sewer-trenchless.png": {
+  "fallback": "svc-sewer-trenchless-800.jpg",
+  "h": 896,
+  "stem": "svc-sewer-trenchless",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-toilet-install.png": {
+  "fallback": "svc-toilet-install-800.jpg",
+  "h": 896,
+  "stem": "svc-toilet-install",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/svc-water-heater.png": {
+  "fallback": "svc-water-heater-800.jpg",
+  "h": 896,
+  "stem": "svc-water-heater",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/trust-door-greeting.png": {
+  "fallback": "trust-door-greeting-800.jpg",
+  "h": 896,
+  "stem": "trust-door-greeting",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/trust-family-water.png": {
+  "fallback": "trust-family-water-800.jpg",
+  "h": 768,
+  "stem": "trust-family-water",
+  "w": 1408,
+  "widths": [
+   480,
+   800,
+   1200,
+   1408
+  ]
+ },
+ "assets/generated/trust-finished-work.png": {
+  "fallback": "trust-finished-work-800.jpg",
+  "h": 896,
+  "stem": "trust-finished-work",
+  "w": 1280,
+  "widths": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "assets/generated/trust-van-neighborhood.png": {
+  "fallback": "trust-van-neighborhood-800.jpg",
+  "h": 768,
+  "stem": "trust-van-neighborhood",
+  "w": 1408,
+  "widths": [
+   480,
+   800,
+   1200,
+   1408
+  ]
+ }
+}
