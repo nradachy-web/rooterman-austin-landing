@@ -119,8 +119,9 @@ export function optimizeHtml(html, R, file) {
   const old = html.match(/<script id="tp-loader" data-callrail="([^"]*)">[\s\S]*?<\/script>\n?/);
   if (old) { callrail = callrail || old[1]; html = html.replace(old[0], ""); }
   const hasSt = /STWidgetManager\('init'/.test(html);
-  // On /book/ the scheduler button is the point of the page: load the shim with the idle group so the first tap opens it.
-  const stEarly = hasSt && /id="stopen"/.test(html);
+  // The shim loads on first interaction or the late timer on every page, /book/ included: loading it at idle cost /book/
+  // about 1.9 s of blocking time in the live PageSpeed test (11/9). The inline queue holds 'ws-open', so the first tap still opens it.
+  const stEarly = false;
   const loader = `<script id="tp-loader" data-callrail="${callrail}">(function(){var w=window,d=document,late=0,cr=0;` +
     `function add(s){var e=d.createElement('script');e.async=true;e.src=s;d.head.appendChild(e)}` +
     `function callrail(){if(cr)return;cr=1;${callrail ? `add('${callrail}');` : ""}${stEarly ? `add('${ST_SHIM}');` : ""}}` +
