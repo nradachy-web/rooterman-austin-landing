@@ -350,10 +350,15 @@ const FOOTER = () => `
         <h3>Contact</h3>
         <div class="foot-list">
           <a class="foot-phone" href="${PHONE_TEL}">${PHONE_DISPLAY}</a>
-          <span>15503 Patrica St</span>
-          <span>Austin, TX 78728</span>
           <span>Calls answered 24/7</span>
           <span>Hablamos Español</span>
+        </div>
+        <h3 class="foot-sub">Locations</h3>
+        <div class="foot-list foot-locs">
+          <a href="${R}locations/north-austin-patrica-st/">15503 Patrica St<br />Austin, TX 78728</a>
+          <a href="${R}locations/northwest-austin-spicewood-springs/">4413 Spicewood Springs Rd #101<br />Austin, TX 78759</a>
+          <a href="${R}locations/georgetown/">4 Sierra Way St ste 115<br />Georgetown, TX 78626</a>
+          <a href="${R}locations/">All locations →</a>
         </div>
       </div>
     </div>
@@ -1919,6 +1924,231 @@ ${TAIL()}`;
   console.log("wrote", slug);
 }
 
+/* ============================= 2026-11-23: LOCATION PAGES ============================= */
+/* One page per Google Business Profile listing. Name, address, phone and hours are copied exactly from
+   the Places API (place details, read 2026-11-23). Call buttons keep the tracked line (512) 645-1441;
+   the listing's own number is shown as plain text so the page matches the listing. */
+
+const DAYS_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const LOCATIONS = [
+  {
+    key: "north-austin-patrica-st",
+    label: "North Austin",
+    gname: "Rooter-Man Plumbing Austin TX",
+    street: "15503 Patrica St", city: "Austin", zip: "78728",
+    phone: "(512) 720-7092", phoneIntl: "+1-512-720-7092",
+    maps: "https://maps.google.com/?cid=2547096794442844494",
+    weekday: ["08:00", "18:00", "8 AM to 6 PM"], saturday: ["09:00", "14:00", "9 AM to 2 PM"],
+    intro: "Our shop on Patrica St sits in North Austin, minutes from Wells Branch and a short run up I-35 or Parmer to Round Rock, Pflugerville, and Brushy Creek.",
+    areas: ["wells-branch", "north-austin", "pflugerville", "round-rock", "brushy-creek", "hutto"],
+  },
+  {
+    key: "northwest-austin-spicewood-springs",
+    label: "Northwest Austin",
+    gname: "Rooterman Plumbing of Austin",
+    street: "4413 Spicewood Springs Rd #101", city: "Austin", zip: "78759",
+    phone: "(512) 817-2295", phoneIntl: "+1-512-817-2295",
+    maps: "https://maps.google.com/?cid=18161591307310036536",
+    weekday: ["08:00", "19:00", "8 AM to 7 PM"], saturday: ["08:00", "15:00", "8 AM to 3 PM"],
+    intro: "Our Northwest Austin location on Spicewood Springs Rd serves North Austin, Cedar Park, Brushy Creek, and the Hill Country neighborhoods west of Mopac.",
+    areas: ["north-austin", "cedar-park", "brushy-creek", "leander", "west-lake-hills", "lakeway"],
+  },
+  {
+    key: "georgetown",
+    label: "Georgetown",
+    gname: "Rooterman Plumbing of Austin",
+    street: "4 Sierra Way St ste 115", city: "Georgetown", zip: "78626",
+    phone: "(512) 842-7824", phoneIntl: "+1-512-842-7824",
+    maps: "https://maps.google.com/?cid=14773777958993912524",
+    weekday: ["08:00", "19:00", "8 AM to 7 PM"], saturday: ["08:00", "15:00", "8 AM to 3 PM"],
+    intro: "Our Georgetown location on Sierra Way serves Georgetown and the Williamson County communities around it, from Round Rock and Hutto to Leander and Cedar Park.",
+    areas: ["georgetown", "round-rock", "hutto", "leander", "cedar-park", "brushy-creek"],
+  },
+];
+
+// City pages that exist on the site, keyed by slug suffix.
+const CITY_PAGES = Object.fromEntries([...cities, ...newAreas].map((c) => [areaKey(c), c.city]));
+const locSlug = (L) => `locations/${L.key}/`;
+const hoursText = (L) => `Monday to Friday ${L.weekday[2]}, Saturday ${L.saturday[2]}, closed Sunday`;
+const addrLines = (L) => `${L.street}<br />${L.city}, TX ${L.zip}`;
+
+function locHoursTable(L) {
+  return `<table class="loc-hours">
+        <tr><th scope="row">Monday to Friday</th><td>${L.weekday[2]}</td></tr>
+        <tr><th scope="row">Saturday</th><td>${L.saturday[2]}</td></tr>
+        <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+      </table>`;
+}
+
+function locBusiness(L) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Plumber",
+    name: L.gname,
+    image: BASE + "assets/client/rooterman-wordmark.png",
+    url: BASE + locSlug(L),
+    telephone: L.phoneIntl,
+    address: { "@type": "PostalAddress", streetAddress: L.street, addressLocality: L.city, addressRegion: "TX", postalCode: L.zip, addressCountry: "US" },
+    hasMap: L.maps,
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: DAYS_WEEK, opens: L.weekday[0], closes: L.weekday[1] },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: L.saturday[0], closes: L.saturday[1] },
+    ],
+    areaServed: L.areas.map((k) => CITY_PAGES[k]),
+    foundingDate: "2012",
+    knowsLanguage: ["en", "es"],
+  };
+}
+
+function buildLocationPage(L) {
+  const slug = locSlug(L);
+  const title = `Plumber at ${L.street}, ${L.city}, TX ${L.zip} | Rooter-Man of Austin`;
+  const desc = `Rooter-Man of Austin, ${L.label} location: ${L.street}, ${L.city}, TX ${L.zip}. Licensed plumbers, family-owned since 2012. Call (512) 645-1441, answered 24/7.`;
+  const faqs = [
+    { q: `Where is your ${L.label} location?`, a: `${L.gname} is at ${L.street}, ${L.city}, TX ${L.zip}. Call ${PHONE_DISPLAY} to get a licensed plumber on the schedule.` },
+    { q: `What are your hours in ${L.label}?`, a: `The ${L.label} location is open ${hoursText(L)}. Our phone line is answered 24/7, so you can call any time and get on the schedule.` },
+    COMMON_FAQS.licensed,
+    COMMON_FAQS.spanish,
+  ];
+  const areaCards = L.areas.map((k) => `<a class="area reveal" href="${R}plumber-${k}/"><b>${PIN_SVG}${CITY_PAGES[k]}</b><span>Plumber in ${CITY_PAGES[k]}</span></a>`).join("\n        ");
+  const others = LOCATIONS.filter((o) => o !== L).map((o) => `<a href="${R}${locSlug(o)}">${o.label}, ${o.street}</a>`).join(" · ");
+  const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") } })) };
+
+  const html = `${head(title, desc, slug)}
+${UTIL()}
+${HEADER()}
+
+<section class="phero" id="top">
+  <div class="phero-img"><img src="${R}assets/generated/hero-image-van-tech.png" alt="Rooter-Man of Austin service van, ${esc(L.label)} location" /></div>
+  <div class="wrap">
+    <div class="phero-inner">
+      <div class="crumb"><a href="${R}">Home</a><span class="sep">/</span><a href="${R}locations/">Locations</a><span class="sep">/</span><span>${L.label}</span></div>
+      <h1>Rooter-Man in ${L.label}, <span class="accent">${L.street}.</span></h1>
+      <p class="sub">${L.intro} Licensed M40109, same-day scheduling whenever possible, and every job backed by our warranty.</p>
+      <div class="offers">
+        <span class="offer-chip"><span class="dot"></span>New customers save 5%</span>
+        <span class="offer-chip"><span class="dot blue"></span>$100 off water heater install</span>
+        <span class="fine">Mention online. Valid through Dec 31, 2026. Cannot be combined.</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL()}">Book Online</a>
+      </div>
+      <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
+    </div>
+  </div>
+</section>
+
+${TRUSTBAR()}
+
+<section class="services">
+  <div class="wrap loc-grid">
+    <div class="loc-card reveal">
+      <span class="eyebrow">${L.label} location</span>
+      <h2>${L.gname}</h2>
+      <address class="loc-addr">${addrLines(L)}</address>
+      <p class="loc-phone">Phone: ${L.phone}</p>
+      ${locHoursTable(L)}
+      <p class="loc-note">Our main line ${PHONE_DISPLAY} is answered 24/7.</p>
+      <div class="loc-cta">
+        <a class="btn btn-call" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+        <a class="btn btn-ghost" href="${L.maps}" target="_blank" rel="noopener">View on Google</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="sec-head">
+        <span class="eyebrow">Nearby areas we serve</span>
+        <h2>Plumbers for ${L.label} and nearby.</h2>
+        <p>Pick your city for local details, or call ${PHONE_DISPLAY} and we will get you on the schedule.</p>
+      </div>
+      <div class="areas-grid loc-areas-grid">
+        ${areaCards}
+      </div>
+      <p class="loc-others">Other locations: ${others}</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we handle</span>
+      <h2>Every service from our ${L.label} location.</h2>
+    </div>
+    <div class="svc-grid">
+      ${serviceLinksGrid()}
+    </div>
+  </div>
+</section>
+
+${STEPS()}
+${coupons("new")}
+${faqBlock(faqs)}
+${finalCta(`Get a plumber on the way in ${L.label}.`, `Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 5%.`)}
+${FOOTER()}
+<script type="application/ld+json">${JSON.stringify(locBusiness(L))}</script>
+<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+${TAIL()}`;
+  mkdirSync(slug.replace(/\/$/, ""), { recursive: true });
+  writeFileSync(slug + "index.html", html);
+  console.log("wrote", slug);
+}
+
+function buildLocationsHub() {
+  const slug = "locations/";
+  const title = "Locations | Rooter-Man of Austin | North Austin, Northwest Austin, Georgetown";
+  const desc = "Rooter-Man of Austin locations: 15503 Patrica St and 4413 Spicewood Springs Rd in Austin, and 4 Sierra Way St in Georgetown. Call (512) 645-1441, answered 24/7.";
+  const tiles = LOCATIONS.map((L) => `<div class="loc-card reveal">
+        <span class="eyebrow">${L.label}</span>
+        <h3>${L.gname}</h3>
+        <address class="loc-addr">${addrLines(L)}</address>
+        <p class="loc-phone">Phone: ${L.phone}</p>
+        ${locHoursTable(L)}
+        <div class="loc-links"><a href="${R}${locSlug(L)}">Location details →</a><a href="${L.maps}" target="_blank" rel="noopener">View on Google →</a></div>
+      </div>`).join("\n      ");
+  const html = `${head(title, desc, slug)}
+${UTIL()}
+${HEADER()}
+
+<section class="phero" id="top">
+  <div class="phero-img"><img src="${R}assets/generated/hero-image-van-tech.png" alt="Rooter-Man of Austin service van" /></div>
+  <div class="wrap">
+    <div class="phero-inner">
+      <div class="crumb"><a href="${R}">Home</a><span class="sep">/</span><span>Locations</span></div>
+      <h1>Rooter-Man of Austin <span class="accent">locations.</span></h1>
+      <p class="sub">Find the location nearest you. Call ${PHONE_DISPLAY} any time, our line is answered 24/7, and we will get a licensed plumber on the schedule.</p>
+      <div class="hero-cta">
+        <a class="btn btn-call btn-lg" href="${PHONE_TEL}">${PHONE_SVG} Call ${PHONE_DISPLAY}</a>
+        <a class="btn btn-book btn-lg" href="${BOOK_URL()}">Book Online</a>
+      </div>
+      <div class="hero-micro"><span class="pulse"></span> Licensed M40109 · Warranty-Backed · Bilingual · Calls Answered 24/7</div>
+    </div>
+  </div>
+</section>
+
+${TRUSTBAR()}
+
+<section class="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our locations</span>
+      <h2>Three locations across Greater Austin.</h2>
+    </div>
+    <div class="loc-tiles">
+      ${tiles}
+    </div>
+  </div>
+</section>
+
+${finalCta("Get a plumber on the way.", "Licensed, local, and family-owned since 2012. Same-day scheduling whenever possible, upfront pricing, and every job backed by our warranty. New customers save 5%.")}
+${FOOTER()}
+<script type="application/ld+json">${JSON.stringify(LOCATIONS.map(locBusiness))}</script>
+${TAIL()}`;
+  mkdirSync("locations", { recursive: true });
+  writeFileSync(slug + "index.html", html);
+  console.log("wrote", slug);
+}
+
 /* ---- sitemap ---- */
 function writeSitemap() {
   const today = new Date().toISOString().slice(0, 10);
@@ -1939,12 +2169,17 @@ newAreas.forEach(buildCityPage);
 buildPlomeroPage();
 buildBookingPage();
 buildLegacyStubs();
+R = "../";
+buildLocationsHub();
+R = "../../";
+LOCATIONS.forEach(buildLocationPage);
+R = "../";
 let matrixCount = 0;
 for (const t of TRACKS) for (const k of AREA_KEYS) { buildMatrixPage(t, AREAS[k], k); matrixCount++; }
 R = "../";
 console.log("wrote", matrixCount, "service x city pages");
 writeSitemap();
-console.log("done:", services.length + expansionHubs.length + cities.length + newAreas.length + 1 + 1 + matrixCount, "pages +", legacyStubs.length, "stubs");
+console.log("done:", services.length + expansionHubs.length + cities.length + newAreas.length + 1 + 1 + 1 + LOCATIONS.length + matrixCount, "pages +", legacyStubs.length, "stubs");
 
 // Speed pass: inline CSS + fonts, responsive AVIF/WebP images, one loader for third-party scripts.
 // The templates above stay plain (site.css link, plain <img>, gtag / CallRail / ServiceTitan tags);
