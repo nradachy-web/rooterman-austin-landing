@@ -182,6 +182,7 @@ const TRUSTBAR = () => `
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>Same-Day Scheduling</b><span>On the schedule today when we can</span></div>
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><b>Warranty-Backed</b><span>Every job stands behind our guarantee</span></div>
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 0 1 0-4h14a2 2 0 0 1 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M9 12h6"/></svg></div><b>Hablamos Español</b><span>Full bilingual service</span></div>
+    <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg></div><b>Answered by Real People</b><span>A live person picks up, not a robot</span></div>
   </div>
 </div>`;
 
@@ -350,7 +351,7 @@ const FOOTER = () => `
         <div class="foot-list">
           <a class="foot-phone" href="${PHONE_TEL}">${PHONE_DISPLAY}</a>
           <span>15503 Patrica St</span>
-          <span>Austin, TX 78759</span>
+          <span>Austin, TX 78728</span>
           <span>Calls answered 24/7</span>
           <span>Hablamos Español</span>
         </div>
@@ -1796,6 +1797,7 @@ ${HEADER()}
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>Cita el mismo día</b><span>Siempre que sea posible</span></div>
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><b>Con garantía</b><span>Cada trabajo respaldado</span></div>
     <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 8a2 2 0 0 1 0-4h14a2 2 0 0 1 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M9 12h6"/></svg></div><b>Hablamos Español</b><span>Servicio completo en español</span></div>
+    <div class="trust-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg></div><b>Le Atiende una Persona</b><span>Una persona real contesta, no un robot</span></div>
   </div>
 </div>
 

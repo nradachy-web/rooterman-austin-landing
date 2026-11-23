@@ -78,7 +78,7 @@
 
   /* trust bar */
   .trustbar{background:var(--bg);padding:30px 0}
-  .trustbar .wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .trustbar .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
   .trust-card{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;padding:1.05rem 1.1rem;border:1px solid var(--line);border-radius:12px;background:#fff;transition:transform .15s,box-shadow .2s}
   .trust-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
   .trust-card .ic{width:38px;height:38px;border-radius:9px;background:rgba(228,0,43,.08);display:grid;place-items:center}
